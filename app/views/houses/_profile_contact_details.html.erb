@@ -1,0 +1,17 @@
+<div class="text-center"> 
+    <div class="mb-2">
+        <%=image_tag(@account.image, class: "img-circle img-responsive img-raised", style: 'width:100px; height:auto;') if @account.image.attached? %>
+    </div>
+    <h3 class="h4 m-0"><%= agent.first_name %></h3>
+        <p><%= agent.company %></p>
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-10 mx-auto">
+            <button class="btn btn-info text-light mb-4 w-100" id="show-tel" data-telephone="<%= agent.telephone %>"><i class="fas fa-phone mr-5"></i><span> Call</span></button>
+        </div>
+        <div class="col-md-10 mx-auto">
+            <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#contact-modal"><i class="fas fa-envelope mr-5"></i> Email</button>
+        </div>
+    </div>
+</div>
+

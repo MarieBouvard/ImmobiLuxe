@@ -1,34 +1,87 @@
-<p id="notice"><%= notice %></p>
+<div>  
+    <%= image_tag(@house.photo, :class => "style_image d-block w-100") if @house.photo.attached? %> 
+</div>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-lg-5">
+                    <p class="h4 mb-0"><%= @house.for_sale? ? "For Sale" : "For Rent" %></p>
+                    <p class="mb-0"><%= @house.address %></p>
+                    <p class="h2 mb-3">
+                        <% if @house.for_sale? %>
+                        <%= @house.price > 0 ? number_to_currency(@house.price, precision: 0) : "Offered Accepted" %>
+                        <% else %>
+                        <%= @house.price > 0 ? number_to_currency(@house.price, precision: 0) : "Open for enquiries" %> / month
+                        <% end %>          
+                    </p>
+                </div>
+                <div class="col-lg-7 text-center">
+                    <div class="row mt-sm-3 bg-light p-3">
+                        <div class="col-4">
+                            <i class="fas fa-bed text-muted m-0"></i><br />
+                            <small><%= @house.rooms %> Rooms </small>
+                        </div>
+                        <div class="col-4">
+                            <i class="fas fa-bath text-muted m-0"></i><br />
+                            <small><%= @house.bathrooms %> Bathrooms </small>
+                        </div>
+                        <div class="col-4">
+                            <i class="fas fa-car text-muted m-0"></i><br />
+                            <small><%= @house.parking_spaces %> Parking </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-top border-bottom mt-5 mb-5 pt-4 pb-4">
+                <div class="col-6">
+                    <% if @house.for_sale? %>
+                        <strong><%= link_to "Est. Monthly Repayments of #{ number_to_currency(((@house.price - (@house.price * 0.1)) / 360), precision: 0) } *", "#", class: "text-success" %></strong>
+                    <% else %>
+                        <strong>Available from <%= Date.parse(@house.available_date.strftime("%a")) %>, <%= @house.available_date.day.ordinalize %> </strong>         
+                    <% end %>
+                </div>
+                <div class="col-6 text-right">
+                    <strong><%= link_to "Can I afford this house?", "#", class: "text-success" %></strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="h3"><%= @house.name %></p>
+                    <p class="h5">House Description</p>
+                    <div id="prop-details" class="mb-3">
+                        <%= simple_format @house.details %>
+                    </div>
+                    <button class="btn btn-outline-info" id="toggleDetails">Show more</button>
+                    <% if @house.for_sale %>
+                        <p class="mt-5">* This rate is based on a 30 year mortgage, after paying an initial 10% down payment. Shorter term mortages would require a higher monthly repayment. </p>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mx-auto">
+            <%= render "houses/agent_details" %><br />
 
-<p>
-  <strong>Name:</strong>
-  <%= @house.name %>
-</p>
+            <div class="row col-lg-8 col-sm-6 mx-auto">
+                <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@house.latitude},#{@house.longitude}&markers=#{@house.latitude},#{@house.longitude}&zoom=15&size=200x200&key=#{ENV['GOOGLE_MAPS_API']}",
+                alt: "#{@house.name} on the map"%>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-  <strong>Address:</strong>
-  <%= @house.address %>
-</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @house.price %>
-</p>
+<section class="mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p class="h3 mb-3">Other houses by this agent</p>
+            </div>
+        <%= render "houses/list", houses: @agent_houses %>
+        </div>
+    </div>
+</section>
 
-<p>
-  <strong>Rooms:</strong>
-  <%= @house.rooms %>
-</p>
 
-<p>
-  <strong>Bathrooms:</strong>
-  <%= @house.bathrooms %>
-</p>
-
-<p>
-  <strong>Photo:</strong>
-  <%= @house.photo %>
-</p>
-
-<%= link_to 'Edit', edit_house_path(@house) %> |
-<%= link_to 'Back', houses_path %>
+<%= render "houses/send_email", agent: @agent %>

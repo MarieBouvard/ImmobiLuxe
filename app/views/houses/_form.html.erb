@@ -1,47 +1,89 @@
 <%= form_with(model: house, local: true) do |form| %>
-  <% if house.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(house.errors.count, "error") %> prohibited this house from being saved:</h2>
+  <%= render "layouts/validation", item: @house %>
 
-      <ul>
-      <% house.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="form-group">
+  <%= form.label :name %>
+  <%= form.text_field :name, class: "form-control" %>
+</div>
+<br/>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+<div class="form-group">
+  <%= form.label :address %>
+  <%= form.text_field :address, class: "form-control" %>
+</div>
+<br/>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
+<div class="form-group">
+  <%= form.label :longitude %>
+  <%= form.number_field :longitude, class: "form-control" %>
+</div>
+<br/>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
-  </div>
+<div class="form-group">
+  <%= form.label :latitude %>
+  <%= form.number_field :latitude, class: "form-control" %>
+</div>
+<br/>
 
-  <div class="field">
-    <%= form.label :rooms %>
-    <%= form.number_field :rooms %>
-  </div>
+<div class="form-group">
+  <%= form.label :price, "Total Price (for sale) / Monthly Price (rental)" %>
+  <%= form.number_field :price, class: "form-control" %>
+</div>
+<br/>
 
-  <div class="field">
-    <%= form.label :bathrooms %>
-    <%= form.number_field :bathrooms %>
-  </div>
+<div class="form-group">
+  <%= form.label :rooms %>
+  <%= form.number_field :rooms, class: "form-control" %>
+</div>
+<br/>
 
-  <div class="field">
-    <%= form.label :photo %>
-    <%= form.file_field :photo %>
-  </div>
+<div class="form-group">
+  <%= form.label :bathrooms %>
+  <%= form.number_field :bathrooms, class: "form-control" %>
+</div>
+<br/>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="form-group">
+  <%= form.label :parking_spaces %>
+  <%= form.number_field :parking_spaces, class: "form-control" %>
+</div>
+<br/>
+
+<div class="form-group">
+  <%= form.label :for_sale %>
+  <%= form.select :for_sale, options_for_select({"Yes" => true, "No" => false }, @house.for_sale), class: "form-control" %>
+</div>
+<br/>
+
+<div class="form-group text-white">
+  <%= opts = @house.for_sale? ? { "Sold" => "sold", "Available" => "available" } : { "Leased" => "leased", "Available" => "available" } %>
+  <br /><%= form.label :status, class:"text-black" %>
+  
+  <%= form.select :status, options_for_select(opts, @house.status), class: "form-control" %>
+</div>
+<br/>
+
+  <div class="form-group">
+  <%= form.label :available_date %>
+  <%= form.date_field :available_date, class: "form-control" %>
+</div>
+<br/>
+
+<div class="form-group">
+  <%= form.label :details %>
+  <%= form.text_field :details, class: "form-control" %>
+</div>
+<br/>
+
+<div class="form-group">
+  <%= form.label :photo %>
+  <%= form.file_field :photo, class: "form-control" %>
+</div>
+
+
+<br/>
+<div class="form-group">
+  <%= form.submit "Save property", class: "btn btn-block btn-success" %>
+</div>
 <% end %>
+
