@@ -1,0 +1,27 @@
+<div class="container"><br />
+    <h1 class="text-center"> All the houses</h1>
+<hr>
+<br />
+<%= paginate @houses %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        <% @houses.each do |house| %>
+            <div class="col">  
+                <div class="card h-100 shadow-lg bg-light">  
+                    <%= image_tag house.photo, width: "auto", :id => "profile-photo" if house.photo.attached? %>
+                        <%= link_to house_path(house) do %>
+                
+                            <div class="card-body house-summary p-3">
+                                <h5 class="card-title name-text h5 mt-3"><%= link_to house.name, house_path(house), class:"text-dark" %></h5>
+
+                                <span class="mr-2"><i class="fas fa-bed text-muted mr-4"></i>  <%= house.rooms %></span>
+                                <span class="mr-2"><i class="fas fa-bath text-muted mr-4"></i>  <%= house.bathrooms %></span>
+                                <span class="mr-2"><i class="fas fa-car text-muted mr-4"></i>  <%= house.parking_spaces %></span>
+                            
+                                <p class="mt-2"><%= house.address %></p>
+                            </div>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
