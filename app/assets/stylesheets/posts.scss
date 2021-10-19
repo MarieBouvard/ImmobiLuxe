@@ -1,3 +1,12 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#blog_cover .jumbotron {
+    background: url(image_path('m1.jpg')) no-repeat center center;
+    background-size: cover;
+    height: 300px;
+    color: #fff;
+    text-shadow: 2px 2px 2px #fff;
+    margin-bottom: 20px;
+}

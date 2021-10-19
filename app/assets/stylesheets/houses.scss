@@ -1,3 +1,42 @@
 // Place all the styles related to the Houses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+ 
+.style_image {
+    height: 80vh;
+    background: no-repeat center center scroll;
+    min-height: 300px;
+    -webkit-background-size: cover;
+    background-size: contain;
+    background-position: center;
+  }
+ 
+
+  #prop-details {
+    height: 100px;
+    overflow: hidden;
+  
+  &.open {
+    height: auto;
+    }
+  }
+
+
+#notifications {
+  display: none;
+}
+
+
+.house-border {
+  border: 1px solid lightgray;
+  width: auto;
+}
+
+.name-text a:link {
+  text-decoration: none;
+  color: #000;
+}
+
+p { 
+  font-size: 16px;
+}
