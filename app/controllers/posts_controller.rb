@@ -1,9 +1,15 @@
 class PostsController < ApplicationController
+  before_action :authenticate_account!, only: [:new, :create]
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :can_access?, except: [:show, :latest]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page])
+  end
+
+  def latest
+    @posts = Post.active.page(params[:page])
   end
 
   # GET /posts/1 or /posts/1.json
@@ -60,6 +66,14 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def can_access?
+      @show_sidebar = true
+      
+      unless current_account.admin?
+        redirect_to root_url, flash: { danger: "You do not have access to view this page" }
+      end
     end
 
     # Only allow a list of trusted parameters through.
