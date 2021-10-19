@@ -1,0 +1,61 @@
+<div>  
+    <%= image_tag @account.cover_image, class: "style_image d-block w-100" if @account.cover_image.attached? %> 
+</div><br/ >
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col">
+                    <p class="h4 mb-0"><%= @account.first_name %></p>
+                    <p class="mb-0"><%= @account.company %></p>
+                    <p class="text-muted">Registered for <%= time_ago_in_words @account.created_at %>
+                </div>
+            </div>
+            <div class="row border-top mt-5 pt-4">
+                <div class="col">
+                    <p class="h5">Description</p>
+                    <div id="prop-details" class="mb-3">
+                        <%= simple_format @account.details %>
+                    </div>
+                    <button class="btn btn-outline-info" id="toggleDetails">Show more</button><br />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <%= render "houses/profile_contact_details", agent: @account %><br />
+        
+            <div class="col-md-10 offset-md-1 text-center">    
+                <div class="row mt-sm-3 bg-light p-3">
+                    <div class="col-6">
+                        <p class="lead"><%= @houses_sold %><br />Sold</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="lead"><%= @houses_for_sale %><br />For Sale</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="lead"><%= @houses_leased %><br />Leased</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="lead"><%= @houses_for_rent %><br />For Rent</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<section class="mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p class="h3 mb-3">Current houses by this agent</p>
+            </div>
+            <%= render "houses/list", houses: @houses %>
+        </div>
+    </div>
+</section>
+
+
+<%= render "houses/send_email", agent: @account %>
