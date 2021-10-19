@@ -1,0 +1,15 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+    <% posts.each do |post| %>
+        <div class="col">  
+            <div class="card h-100 shadow-lg bg-light">  
+                <%= image_tag post.image, width: "auto", :id => "cover_image" if post.image.attached? %>
+                    <%= link_to post_path(post) do %>
+                        <div class="card-body house-summary">
+                            <h5 class="card-title name-text h5 mt-3"><%= link_to post.title, post_path(post), class:"text-dark" %></h5>
+                                <p class="mt-2"><%= post.summary %></p>
+                        </div>
+                    <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>

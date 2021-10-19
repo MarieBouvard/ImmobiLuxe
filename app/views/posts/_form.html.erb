@@ -1,47 +1,61 @@
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm col-6-md col-4-lg mt-4">
+            <%= form_with(model: post, local: true) do |form| %>
+            <h1 class="mb-3 fw-normal">New Post</h1>
+            <% if post.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+                        <ul>
+                        <% post.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                </div>
+            <% end %>
 
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+            <div class="form-group">
+                <%= form.label :title %><br />
+                <%= form.text_field :title, class: "form-control" %>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <%= form.label :url %><br />
+                <%= form.text_field :url, class: "form-control" %>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <%= form.label :summary %><br />
+                <%= form.text_field :summary, class: "form-control" %>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <%= form.label :body %><br />
+                <%= form.text_area :body, class: "form-control" %>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <%= form.label :image %>
+                <%= form.file_field :image, class: "form-control" %>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <%= form.label :active %><br />
+                <%= form.check_box :active %>
+            </div>
+            <br />
+
+            <div class="actions">
+                <%= form.submit %>
+            </div>
+        <% end %>
+        <%= link_to 'Back', posts_path %>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :summary %>
-    <%= form.text_field :summary %>
-  </div>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_field :body %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :active %>
-    <%= form.check_box :active %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
+  
