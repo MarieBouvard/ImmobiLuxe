@@ -19,6 +19,8 @@ gem 'kaminari'
 
 gem 'dotenv-rails'
 
+gem 'bootstrap', '~> 5.1.0'
+
 gem 'toastr-rails'
 
 
