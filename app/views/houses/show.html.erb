@@ -64,7 +64,7 @@
             <%= render "houses/agent_details" %><br />
 
             <div class="row col-lg-8 col-sm-6 mx-auto">
-                <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@house.latitude},#{@house.longitude}&markers=#{@house.latitude},#{@house.longitude}&zoom=15&size=200x200&key=#{ENV['GOOGLE_MAPS_API']}",
+                <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@house.latitude},#{@house.longitude}&markers=#{@house.latitude},#{@house.longitude}&zoom=15&size=150x150&key=#{ENV['GOOGLE_MAPS_API']}",
                 alt: "#{@house.name} on the map"%>
             </div>
         </div>
