@@ -19,11 +19,7 @@ gem 'kaminari'
 
 gem 'dotenv-rails'
 
-gem 'bootstrap'
-
 gem 'toastr-rails'
-
-gem "font-awesome-rails"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
