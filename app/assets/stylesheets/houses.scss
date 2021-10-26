@@ -40,3 +40,56 @@
 p { 
   font-size: 16px;
 }
+
+@media only screen and (max-width: 1000px) {
+  #houseaddress {
+    display: none;
+  }
+
+  #address {
+    display: none;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  #houseaddress {
+    display: none;
+  }
+
+  #address {
+    display: none;
+  }
+
+
+  #housebathrooms {
+    display: none;
+  }
+
+  #bathrooms {
+    display: none;
+  }
+
+}
+
+@media only screen and (max-width: 450px) {
+  #houserooms {
+    display: none;
+  }
+
+  #rooms {
+    display: none;
+  }
+
+}
+
+@media only screen and (max-width: 370px) {
+  #houseprice {
+    display: none;
+  }
+
+  #price {
+    display: none;
+  }
+
+}

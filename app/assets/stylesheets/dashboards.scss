@@ -55,3 +55,22 @@
     text-transform: uppercase;
   }
   
+  @media only screen and (max-width: 1000px) {
+    #searchbar {
+      display: none;
+    }
+
+    #navbarBrand {
+      margin: 0 auto;
+    }
+  
+  }
+
+
+  @media only screen and (max-width: 600px) {
+
+    #navbarBrand {
+      margin: 0 auto;
+    }
+   
+  }
